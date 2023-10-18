@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h1>Welcome to our Object Detection App!</h1>
+                <p>This is a simple app to detect objects in your images.</p>
+                
+                <form action="/" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="file" name="file" onchange="displaySelectedFile()">
+                            <label class="custom-file-label" for="file">Choose file</label>
+                        </div>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Upload and Detect</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="result">
+                    {% if result_img %}
+                    <img src="{{ result_img }}" alt="Detected Image" width="500px">
+                    {% endif %}
+                </div>
+                <div id="selectedFile"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function displaySelectedFile() {
+            const fileInput = document.getElementById('file');
+            const selectedFileDiv = document.getElementById('selectedFile');
+            if (fileInput.files.length > 0) {
+                selectedFileDiv.textContent = `Selected File: ${fileInput.files[0].name}`;
+            } else {
+                selectedFileDiv.textContent = '';
+            }
+        }
+    </script>
+</body>
+</html>
